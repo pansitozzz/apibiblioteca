@@ -1,0 +1,48 @@
+<div class="page-container">
+  <h1>Mis prestamos</h1>
+
+  <table mat-table [dataSource]="prestamos()" class="full-width">
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef>Libro</th>
+      <td mat-cell *matCellDef="let p">{{ p.libro.titulo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaPrestamo">
+      <th mat-header-cell *matHeaderCellDef>Fecha de prestamo</th>
+      <td mat-cell *matCellDef="let p">{{ p.fechaPrestamo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaDevolucionEsperada">
+      <th mat-header-cell *matHeaderCellDef>Devolucion esperada</th>
+      <td mat-cell *matCellDef="let p">{{ p.fechaDevolucionEsperada }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let p">
+        <mat-chip-set>
+          @switch (p.estado) {
+            @case ('ACTIVO') { <mat-chip color="primary">Activo</mat-chip> }
+            @case ('DEVUELTO') { <mat-chip>Devuelto</mat-chip> }
+            @case ('ATRASADO') { <mat-chip color="warn">Atrasado</mat-chip> }
+          }
+        </mat-chip-set>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  @if (prestamos().length === 0) {
+    <p class="vacio">Aun no tienes prestamos registrados.</p>
+  }
+
+  <mat-paginator
+    [length]="totalElementos()"
+    [pageSize]="tamanio"
+    [pageIndex]="pagina"
+    [pageSizeOptions]="[5, 10, 20]"
+    (page)="cambiarPagina($event)">
+  </mat-paginator>
+</div>
