@@ -13,9 +13,9 @@ import org.springframework.context.annotation.Configuration;
         info = @Info(
                 title = "Biblioteca API - UNTELS",
                 version = "1.0.0",
-                description = "API REST para el sistema de biblioteca universitaria: catalogo, prestamos, "
+                description = "API REST para el sistema de biblioteca universitaria: catálogo, préstamos, "
                         + "reservas y multas.",
-                contact = @Contact(name = "Grupo 03 - Gestion de Configuracion de Software")
+                contact = @Contact(name = "Grupo 03 - Gestión de Configuración de Software")
         ),
         security = @SecurityRequirement(name = "bearerAuth")
 )

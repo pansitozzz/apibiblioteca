@@ -5,7 +5,7 @@ import { Rol } from '../models/usuario.model';
 
 /**
  * Crea un guard que exige que el usuario autenticado tenga alguno de los
- * roles indicados. Se usa en la configuracion de rutas, ej:
+ * roles indicados. Se usa en la configuración de rutas, ej:
  * canActivate: [roleGuard(['ADMIN', 'BIBLIOTECARIO'])]
  */
 export function roleGuard(rolesPermitidos: Rol[]): CanActivateFn {

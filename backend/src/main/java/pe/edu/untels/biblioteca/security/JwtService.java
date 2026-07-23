@@ -16,7 +16,7 @@ import java.util.function.Function;
 
 /**
  * Genera y valida los JSON Web Tokens usados para autenticar las peticiones.
- * El secreto y la expiracion se configuran via variables de entorno (ver application.yml).
+ * El secreto y la expiración se configuran via variables de entorno (ver application.yml).
  */
 @Service
 public class JwtService {

@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
             throw new BusinessRuleException("Ya existe una cuenta registrada con el email: " + request.email());
         }
 
-        // El auto-registro publico siempre crea cuentas ESTUDIANTE.
+        // El auto-registro público siempre crea cuentas ESTUDIANTE.
         // Las cuentas ADMIN/BIBLIOTECARIO se crean por un ADMIN existente (fuera del alcance de este endpoint).
         Usuario usuario = Usuario.builder()
                 .nombre(request.nombre())

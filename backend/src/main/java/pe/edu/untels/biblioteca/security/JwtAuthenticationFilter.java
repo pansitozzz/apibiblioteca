@@ -53,8 +53,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
         } catch (Exception ex) {
-            // Token invalido, expirado o malformado: se continua sin autenticar,
-            // Spring Security respondera 401/403 segun la regla de la ruta.
+            // Token inválido, expirado o malformado: se continúa sin autenticar,
+            // Spring Security responderá 401/403 según la regla de la ruta.
             SecurityContextHolder.clearContext();
         }
 

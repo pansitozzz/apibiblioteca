@@ -3,16 +3,16 @@
   <span class="spacer"></span>
 
   @if (authService.estaAutenticado()) {
-    <button mat-button routerLink="/catalogo">Catalogo</button>
-    <button mat-button routerLink="/mis-prestamos">Mis prestamos</button>
+    <button mat-button routerLink="/catalogo">Catálogo</button>
+    <button mat-button routerLink="/mis-prestamos">Mis préstamos</button>
 
     @if (esBibliotecarioOAdmin()) {
-      <button mat-button [matMenuTriggerFor]="menuGestion">Gestion</button>
+      <button mat-button [matMenuTriggerFor]="menuGestion">Gestión</button>
       <mat-menu #menuGestion="matMenu">
         <button mat-menu-item routerLink="/admin/libros">Libros</button>
         <button mat-menu-item routerLink="/admin/autores">Autores</button>
-        <button mat-menu-item routerLink="/admin/categorias">Categorias</button>
-        <button mat-menu-item routerLink="/admin/prestamos">Prestamos y devoluciones</button>
+        <button mat-menu-item routerLink="/admin/categorias">Categorías</button>
+        <button mat-menu-item routerLink="/admin/prestamos">Préstamos y devoluciones</button>
       </mat-menu>
     }
 
@@ -25,11 +25,11 @@
       </div>
       <button mat-menu-item (click)="cerrarSesion()">
         <mat-icon>logout</mat-icon>
-        Cerrar sesion
+        Cerrar sesión
       </button>
     </mat-menu>
   } @else {
-    <button mat-button routerLink="/login">Iniciar sesion</button>
+    <button mat-button routerLink="/login">Iniciar sesión</button>
     <button mat-raised-button color="accent" routerLink="/register">Registrarse</button>
   }
 </mat-toolbar>

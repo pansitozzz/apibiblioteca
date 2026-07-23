@@ -58,7 +58,7 @@ class PrestamoControllerTest {
 
         Usuario estudiante = usuarioRepository.save(Usuario.builder()
                 .nombre("Maria").apellido("Quispe")
-                .email("estudiante-prestamo-" + System.nanoTime() + "@correo.demo")
+                .email("estudiante-préstamo-" + System.nanoTime() + "@correo.demo")
                 .password(passwordEncoder.encode("ClaveSegura123"))
                 .rol(Rol.ESTUDIANTE).build());
 

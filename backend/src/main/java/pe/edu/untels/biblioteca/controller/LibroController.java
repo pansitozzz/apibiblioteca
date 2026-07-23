@@ -17,7 +17,7 @@ import pe.edu.untels.biblioteca.service.LibroService;
 @RestController
 @RequestMapping("/api/v1/libros")
 @RequiredArgsConstructor
-@Tag(name = "Libros", description = "Catalogo de libros de la biblioteca")
+@Tag(name = "Libros", description = "Catálogo de libros de la biblioteca")
 public class LibroController {
 
     private final LibroService libroService;

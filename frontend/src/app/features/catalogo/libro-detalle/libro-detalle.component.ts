@@ -38,11 +38,11 @@ export class LibroDetalleComponent implements OnInit {
 
     this.prestamoService.crear({ libroId: libro.id, usuarioId: null }).subscribe({
       next: () => {
-        this.snackBar.open('Prestamo registrado correctamente', 'Cerrar', { duration: 3000 });
+        this.snackBar.open('Préstamo registrado correctamente', 'Cerrar', { duration: 3000 });
         this.libroService.obtenerPorId(libro.id).subscribe((actualizado) => this.libro.set(actualizado));
       },
       error: (err) => {
-        this.snackBar.open(err?.error?.message ?? 'No se pudo registrar el prestamo', 'Cerrar', { duration: 4000 });
+        this.snackBar.open(err?.error?.message ?? 'No se pudo registrar el préstamo', 'Cerrar', { duration: 4000 });
       }
     });
   }

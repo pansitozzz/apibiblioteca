@@ -49,7 +49,7 @@ public class PrestamoServiceImpl implements PrestamoService {
         Usuario destinatario = solicitante;
         if (request.usuarioId() != null && !request.usuarioId().equals(solicitante.getId())) {
             if (solicitante.getRol() == Rol.ESTUDIANTE) {
-                throw new AccessDeniedException("Un estudiante solo puede registrar prestamos a su propio nombre");
+                throw new AccessDeniedException("Un estudiante solo puede registrar préstamos a su propio nombre");
             }
             destinatario = usuarioRepository.findById(request.usuarioId())
                     .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con id: " + request.usuarioId()));
@@ -66,7 +66,7 @@ public class PrestamoServiceImpl implements PrestamoService {
                 libro.getId(), destinatario.getId(), EstadoPrestamo.ACTIVO);
         if (prestamoDuplicado) {
             throw new BusinessRuleException(
-                    "El usuario ya tiene un prestamo activo de este libro. Debe devolverlo antes de solicitar otro.");
+                    "El usuario ya tiene un préstamo activo de este libro. Debe devolverlo antes de solicitar otro.");
         }
 
         libro.setStock(libro.getStock() - 1);
@@ -100,10 +100,10 @@ public class PrestamoServiceImpl implements PrestamoService {
     @Override
     public PrestamoResponse devolver(Long id) {
         Prestamo prestamo = prestamoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Prestamo no encontrado con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Préstamo no encontrado con id: " + id));
 
         if (prestamo.getEstado() == EstadoPrestamo.DEVUELTO) {
-            throw new BusinessRuleException("Este prestamo ya fue devuelto");
+            throw new BusinessRuleException("Este préstamo ya fue devuelto");
         }
 
         LocalDate hoy = LocalDate.now();

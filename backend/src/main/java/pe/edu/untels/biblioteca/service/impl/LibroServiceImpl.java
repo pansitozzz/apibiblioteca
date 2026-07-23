@@ -52,7 +52,7 @@ public class LibroServiceImpl implements LibroService {
         Autor autor = autorRepository.findById(request.autorId())
                 .orElseThrow(() -> new ResourceNotFoundException("Autor no encontrado con id: " + request.autorId()));
         Categoria categoria = categoriaRepository.findById(request.categoriaId())
-                .orElseThrow(() -> new ResourceNotFoundException("Categoria no encontrada con id: " + request.categoriaId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con id: " + request.categoriaId()));
 
         Libro libro = Libro.builder()
                 .titulo(request.titulo())
@@ -79,7 +79,7 @@ public class LibroServiceImpl implements LibroService {
         Autor autor = autorRepository.findById(request.autorId())
                 .orElseThrow(() -> new ResourceNotFoundException("Autor no encontrado con id: " + request.autorId()));
         Categoria categoria = categoriaRepository.findById(request.categoriaId())
-                .orElseThrow(() -> new ResourceNotFoundException("Categoria no encontrada con id: " + request.categoriaId()));
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con id: " + request.categoriaId()));
 
         libro.setTitulo(request.titulo());
         libro.setIsbn(request.isbn());

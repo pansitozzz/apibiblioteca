@@ -5,9 +5,9 @@ import { catchError, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 /**
- * Maneja de forma centralizada los errores de autenticacion/autorizacion:
- * - 401: la sesion expiro o el token es invalido -> se cierra sesion y se redirige al login.
- * - 403: el usuario no tiene permisos para la accion -> se redirige a una pagina de acceso denegado.
+ * Maneja de forma centralizada los errores de autenticación/autorización:
+ * - 401: la sesión expiró o el token es inválido -> se cierra sesión y se redirige al login.
+ * - 403: el usuario no tiene permisos para la acción -> se redirige a una página de acceso denegado.
  * El resto de errores se propagan para que cada componente los maneje (ej. mostrar un mensaje).
  */
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {

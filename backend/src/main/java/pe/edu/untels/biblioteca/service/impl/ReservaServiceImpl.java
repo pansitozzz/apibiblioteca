@@ -39,7 +39,7 @@ public class ReservaServiceImpl implements ReservaService {
 
         if (libro.getStock() > 0) {
             throw new BusinessRuleException(
-                    "El libro tiene stock disponible, no es necesario reservarlo: puede solicitar un prestamo directamente");
+                    "El libro tiene stock disponible, no es necesario reservarlo: puede solicitar un préstamo directamente");
         }
 
         Reserva reserva = Reserva.builder()

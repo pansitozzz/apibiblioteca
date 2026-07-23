@@ -53,7 +53,7 @@ export class LoginComponent {
       },
       error: () => {
         this.cargando.set(false);
-        this.error.set('Email o contrasena incorrectos');
+        this.error.set('Email o contraseña incorrectos');
       }
     });
   }

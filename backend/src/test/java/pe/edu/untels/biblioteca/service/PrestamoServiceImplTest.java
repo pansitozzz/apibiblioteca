@@ -69,7 +69,7 @@ class PrestamoServiceImplTest {
         libro = Libro.builder()
                 .id(10L).titulo("Clean Code").isbn("9780132350884")
                 .autor(Autor.builder().id(1L).nombre("Robert").apellido("Martin").build())
-                .categoria(Categoria.builder().id(1L).nombre("Tecnologia").build())
+                .categoria(Categoria.builder().id(1L).nombre("Tecnología").build())
                 .stock(2)
                 .build();
     }
@@ -122,7 +122,7 @@ class PrestamoServiceImplTest {
 
         assertThatThrownBy(() -> prestamoService.crear(request, estudiante.getEmail()))
                 .isInstanceOf(BusinessRuleException.class)
-                .hasMessageContaining("prestamo activo");
+                .hasMessageContaining("préstamo activo");
 
         verify(prestamoRepository, never()).save(any());
     }

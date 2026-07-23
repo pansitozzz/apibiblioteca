@@ -11,8 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
     <div class="contenedor">
       <mat-icon class="icono">block</mat-icon>
       <h1>Acceso denegado</h1>
-      <p>No tienes permisos para ver esta seccion.</p>
-      <button mat-raised-button color="primary" routerLink="/catalogo">Volver al catalogo</button>
+      <p>No tienes permisos para ver esta sección.</p>
+      <button mat-raised-button color="primary" routerLink="/catalogo">Volver al catálogo</button>
     </div>
   `,
   styles: [`

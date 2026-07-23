@@ -1,9 +1,9 @@
 <div class="page-container">
   <div class="encabezado">
-    <h1>Gestion de categorias</h1>
+    <h1>Gestión de categorías</h1>
     <button mat-raised-button color="primary" (click)="nueva()">
       <mat-icon>add</mat-icon>
-      Nueva categoria
+      Nueva categoría
     </button>
   </div>
 
@@ -15,7 +15,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Descripcion</mat-label>
+        <mat-label>Descripción</mat-label>
         <input matInput formControlName="descripcion">
       </mat-form-field>
 
@@ -33,7 +33,7 @@
     </ng-container>
 
     <ng-container matColumnDef="descripcion">
-      <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
       <td mat-cell *matCellDef="let c">{{ c.descripcion }}</td>
     </ng-container>
 

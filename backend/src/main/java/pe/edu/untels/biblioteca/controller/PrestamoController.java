@@ -19,7 +19,7 @@ import pe.edu.untels.biblioteca.service.PrestamoService;
 @RestController
 @RequestMapping("/api/v1/prestamos")
 @RequiredArgsConstructor
-@Tag(name = "Prestamos", description = "Prestamos y devoluciones de libros")
+@Tag(name = "Préstamos", description = "Préstamos y devoluciones de libros")
 public class PrestamoController {
 
     private final PrestamoService prestamoService;

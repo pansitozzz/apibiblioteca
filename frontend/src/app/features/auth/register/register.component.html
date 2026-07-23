@@ -22,7 +22,7 @@
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Contrasena</mat-label>
+          <mat-label>Contraseña</mat-label>
           <input matInput type="password" formControlName="password" autocomplete="new-password">
           @if (formulario.get('password')?.hasError('minlength')) {
             <mat-error>Debe tener al menos 8 caracteres</mat-error>
@@ -30,7 +30,7 @@
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Codigo de estudiante (opcional)</mat-label>
+          <mat-label>Código de estudiante (opcional)</mat-label>
           <input matInput formControlName="codigoEstudiante">
         </mat-form-field>
 
@@ -45,7 +45,7 @@
     </mat-card-content>
 
     <mat-card-footer class="footer">
-      <p>Ya tienes cuenta? <a routerLink="/login">Inicia sesion</a></p>
+      <p>¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
     </mat-card-footer>
   </mat-card>
 </div>

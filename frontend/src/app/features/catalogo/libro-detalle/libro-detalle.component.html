@@ -1,5 +1,5 @@
 <div class="page-container">
-  <a routerLink="/catalogo">&larr; Volver al catalogo</a>
+  <a routerLink="/catalogo">&larr; Volver al catálogo</a>
 
   @if (libro(); as l) {
     <mat-card class="detalle">
@@ -13,7 +13,7 @@
           <mat-chip>{{ l.categoria.nombre }}</mat-chip>
           <mat-chip>ISBN: {{ l.isbn }}</mat-chip>
           @if (l.anioPublicacion) {
-            <mat-chip>Anio: {{ l.anioPublicacion }}</mat-chip>
+            <mat-chip>Año: {{ l.anioPublicacion }}</mat-chip>
           }
           @if (l.stock > 0) {
             <mat-chip color="primary">Stock disponible: {{ l.stock }}</mat-chip>
@@ -27,7 +27,7 @@
 
       <mat-card-actions>
         @if (l.stock > 0) {
-          <button mat-raised-button color="primary" (click)="solicitarPrestamo()">Solicitar prestamo</button>
+          <button mat-raised-button color="primary" (click)="solicitarPrestamo()">Solicitar préstamo</button>
         } @else {
           <button mat-raised-button (click)="reservar()">Reservar</button>
         }

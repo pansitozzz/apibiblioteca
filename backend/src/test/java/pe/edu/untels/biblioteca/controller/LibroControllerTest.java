@@ -56,7 +56,7 @@ class LibroControllerTest {
         autorId = autor.getId();
 
         Categoria categoria = categoriaRepository.save(Categoria.builder()
-                .nombre("Tecnologia-" + System.nanoTime()).descripcion("Libros tecnicos").build());
+                .nombre("Tecnología-" + System.nanoTime()).descripcion("Libros técnicos").build());
         categoriaId = categoria.getId();
 
         libroRepository.save(Libro.builder()

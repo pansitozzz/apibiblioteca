@@ -1,9 +1,9 @@
 <div class="page-container">
-  <h1>Catalogo de libros</h1>
+  <h1>Catálogo de libros</h1>
 
   <div class="filtros">
     <mat-form-field appearance="outline">
-      <mat-label>Buscar por titulo</mat-label>
+      <mat-label>Buscar por título</mat-label>
       <input matInput [(ngModel)]="titulo" (keyup.enter)="buscar()">
     </mat-form-field>
 
@@ -37,7 +37,7 @@
         </mat-card-content>
         <mat-card-actions>
           @if (libro.stock > 0) {
-            <button mat-button color="primary" (click)="solicitarPrestamo(libro, $event)">Solicitar prestamo</button>
+            <button mat-button color="primary" (click)="solicitarPrestamo(libro, $event)">Solicitar préstamo</button>
           } @else {
             <button mat-button (click)="reservar(libro, $event)">Reservar</button>
           }

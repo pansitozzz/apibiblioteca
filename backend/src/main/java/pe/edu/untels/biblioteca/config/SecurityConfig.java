@@ -48,11 +48,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(RUTAS_PUBLICAS).permitAll()
 
-                        // Lectura de catalogo: cualquier usuario autenticado
+                        // Lectura de catálogo: cualquier usuario autenticado
                         .requestMatchers(HttpMethod.GET, "/api/v1/libros/**", "/api/v1/autores/**", "/api/v1/categorias/**")
                         .authenticated()
 
-                        // Escritura de catalogo: solo ADMIN y BIBLIOTECARIO
+                        // Escritura de catálogo: solo ADMIN y BIBLIOTECARIO
                         .requestMatchers(HttpMethod.POST, "/api/v1/libros/**", "/api/v1/autores/**", "/api/v1/categorias/**")
                         .hasAnyRole("ADMIN", "BIBLIOTECARIO")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/libros/**", "/api/v1/autores/**", "/api/v1/categorias/**")
@@ -60,7 +60,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/libros/**", "/api/v1/autores/**", "/api/v1/categorias/**")
                         .hasAnyRole("ADMIN", "BIBLIOTECARIO")
 
-                        // Gestion de usuarios: solo ADMIN (excepto ver/editar el propio perfil, controlado en el service)
+                        // Gestión de usuarios: solo ADMIN (excepto ver/editar el propio perfil, controlado en el service)
                         .requestMatchers("/api/v1/usuarios/**").authenticated()
 
                         // Devoluciones: solo ADMIN/BIBLIOTECARIO

@@ -47,11 +47,11 @@ export class PrestamosAdminComponent implements OnInit {
   devolver(prestamo: Prestamo): void {
     this.prestamoService.devolver(prestamo.id).subscribe({
       next: () => {
-        this.snackBar.open('Devolucion registrada correctamente', 'Cerrar', { duration: 3000 });
+        this.snackBar.open('Devolución registrada correctamente', 'Cerrar', { duration: 3000 });
         this.cargar();
       },
       error: (err) => {
-        this.snackBar.open(err?.error?.message ?? 'No se pudo registrar la devolucion', 'Cerrar', { duration: 4000 });
+        this.snackBar.open(err?.error?.message ?? 'No se pudo registrar la devolución', 'Cerrar', { duration: 4000 });
       }
     });
   }

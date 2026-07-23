@@ -7,9 +7,9 @@ public record PrestamoRequest(
         Long libroId,
 
         /**
-         * Opcional: solo lo usan ADMIN/BIBLIOTECARIO para registrar un prestamo
-         * a nombre de otro usuario. Si es null, el prestamo se crea para el
-         * usuario autenticado (caso tipico de un ESTUDIANTE).
+         * Opcional: solo lo usan ADMIN/BIBLIOTECARIO para registrar un préstamo
+         * a nombre de otro usuario. Si es null, el préstamo se crea para el
+         * usuario autenticado (caso típico de un ESTUDIANTE).
          */
         Long usuarioId
 ) {

@@ -1,7 +1,7 @@
 <div class="form-container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Iniciar sesion</mat-card-title>
+      <mat-card-title>Iniciar sesión</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
@@ -13,15 +13,15 @@
             <mat-error>El email es obligatorio</mat-error>
           }
           @if (formulario.get('email')?.hasError('email') && formulario.get('email')?.touched) {
-            <mat-error>El email no es valido</mat-error>
+            <mat-error>El email no es válido</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="outline">
-          <mat-label>Contrasena</mat-label>
+          <mat-label>Contraseña</mat-label>
           <input matInput type="password" formControlName="password" autocomplete="current-password">
           @if (formulario.get('password')?.hasError('required') && formulario.get('password')?.touched) {
-            <mat-error>La contrasena es obligatoria</mat-error>
+            <mat-error>La contraseña es obligatoria</mat-error>
           }
         </mat-form-field>
 
@@ -41,7 +41,7 @@
 
     <mat-card-footer class="footer">
       <p>Cuentas de prueba: admin&#64;biblioteca.demo / Password123</p>
-      <p>Que no tienes cuenta? <a routerLink="/register">Registrate aqui</a></p>
+      <p>¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a></p>
     </mat-card-footer>
   </mat-card>
 </div>

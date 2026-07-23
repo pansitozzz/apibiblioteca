@@ -1,14 +1,14 @@
 # Biblioteca UNTELS
 
-API REST para gestion de biblioteca universitaria con prestamos, reservas y control de multas, con frontend en Angular.
+API REST para gestión de biblioteca universitaria con préstamos, reservas y control de multas, con frontend en Angular.
 
 ## Problema y contexto
 
-Este proyecto nace como trabajo del curso **Gestion de Configuracion de Software** de la Universidad Nacional Tecnologica de Lima Sur (UNTELS). Se desarrollo en equipo (**Grupo 03**) siguiendo la metodologia **Scrum** a lo largo de **4 sprints**, con gestion de tareas en **Jira** y control de versiones bajo el flujo **GitFlow** (ramas `develop`, `feature/*`, `release/*`).
+Este proyecto nace como trabajo del curso **Gestión de Configuración de Software** de la Universidad Nacional Tecnológica de Lima Sur (UNTELS). Se desarrolló en equipo (**Grupo 03**) siguiendo la metodología **Scrum** a lo largo de **4 sprints**, con gestión de tareas en **Jira** y control de versiones bajo el flujo **GitFlow** (ramas `develop`, `feature/*`, `release/*`).
 
-El objetivo funcional es digitalizar los procesos de una biblioteca universitaria: catalogo de libros, prestamos y devoluciones, reservas cuando no hay stock disponible, y el calculo automatico de multas por atraso.
+El objetivo funcional es digitalizar los procesos de una biblioteca universitaria: catálogo de libros, préstamos y devoluciones, reservas cuando no hay stock disponible, y el cálculo automático de multas por atraso.
 
-## Stack tecnologico
+## Stack tecnológico
 
 ### Backend
 
@@ -34,7 +34,7 @@ El objetivo funcional es digitalizar los procesos de una biblioteca universitari
 
 ## Arquitectura
 
-El backend sigue una arquitectura en capas clasica:
+El backend sigue una arquitectura en capas clásica:
 
 ```
 controller -> service (interfaz + implementacion) -> repository (Spring Data JPA)
@@ -42,22 +42,22 @@ controller -> service (interfaz + implementacion) -> repository (Spring Data JPA
                  mapper (entidad <-> DTO)
 ```
 
-- `dto/request` y `dto/response` estan separados: los DTOs de entrada nunca se reutilizan como salida.
+- `dto/request` y `dto/response` están separados: los DTOs de entrada nunca se reutilizan como salida.
 - `exception` centraliza las excepciones de negocio (`ResourceNotFoundException`, `BusinessRuleException`) y un `@RestControllerAdvice` que devuelve errores en un formato JSON consistente.
-- `security` contiene el filtro JWT, el servicio de tokens y las reglas de autorizacion por rol.
-- Las migraciones de base de datos viven en `db/migration` y se aplican con Flyway; no se usa `ddl-auto: update` en ningun perfil.
+- `security` contiene el filtro JWT, el servicio de tokens y las reglas de autorización por rol.
+- Las migraciones de base de datos viven en `db/migration` y se aplican con Flyway; no se usa `ddl-auto: update` en ningún perfil.
 
-El frontend organiza el codigo por dominio:
+El frontend organiza el código por dominio:
 
 ```
 core/        -> servicios HTTP, interceptores, guards y modelos compartidos
-features/    -> paginas por funcionalidad (auth, catalogo, prestamos, admin)
-shared/      -> componentes reutilizables (navbar, paginas de error)
+features/    -> páginas por funcionalidad (auth, catalogo, prestamos, admin)
+shared/      -> componentes reutilizables (navbar, páginas de error)
 ```
 
-Un interceptor adjunta el JWT a cada peticion y otro intercepta los errores 401/403 para cerrar sesion o redirigir segun corresponda. Las rutas de administracion estan protegidas con `authGuard` y `roleGuard`.
+Un interceptor adjunta el JWT a cada petición y otro intercepta los errores 401/403 para cerrar sesión o redirigir según corresponda. Las rutas de administración están protegidas con `authGuard` y `roleGuard`.
 
-## Como correrlo localmente
+## Cómo correrlo localmente
 
 ### Backend
 
@@ -68,7 +68,7 @@ Un interceptor adjunta el JWT a cada peticion y otro intercepta los errores 401/
    docker compose up --build
    ```
 
-   Esto construye la imagen del backend, levanta PostgreSQL y aplica las migraciones de Flyway automaticamente al iniciar.
+   Esto construye la imagen del backend, levanta PostgreSQL y aplica las migraciones de Flyway automáticamente al iniciar.
 
 3. Alternativa sin Docker (requiere PostgreSQL corriendo localmente):
 
@@ -81,9 +81,9 @@ Un interceptor adjunta el JWT a cada peticion y otro intercepta los errores 401/
    ./mvnw spring-boot:run
    ```
 
-   Flyway aplica las migraciones (`V1__init.sql`, `V2__seed_data.sql`) contra la base indicada la primera vez que arranca la aplicacion.
+   Flyway aplica las migraciones (`V1__init.sql`, `V2__seed_data.sql`) contra la base indicada la primera vez que arranca la aplicación.
 
-4. Documentacion interactiva de la API (Swagger UI): `http://localhost:8080/swagger-ui.html`
+4. Documentación interactiva de la API (Swagger UI): `http://localhost:8080/swagger-ui.html`
 
 Usuarios de ejemplo cargados por el seed (todos ficticios):
 
@@ -110,12 +110,12 @@ cd backend
 ./mvnw test
 ```
 
-Incluye tests unitarios de la logica de negocio de prestamos (validacion de stock, prestamo duplicado, calculo de multas por atraso) con JUnit 5 + Mockito, y tests de integracion con MockMvc + H2 sobre los controllers de autenticacion, libros y prestamos.
+Incluye tests unitarios de la lógica de negocio de préstamos (validación de stock, préstamo duplicado, cálculo de multas por atraso) con JUnit 5 + Mockito, y tests de integración con MockMvc + H2 sobre los controllers de autenticación, libros y préstamos.
 
 ## Capturas de pantalla
 
-_Pendiente: agregar capturas del catalogo, el flujo de prestamo y el panel de gestion._
+_Pendiente: agregar capturas del catálogo, el flujo de préstamo y el panel de gestión._
 
-## Creditos
+## Créditos
 
-Proyecto realizado en equipo (Grupo 03, curso Gestion de Configuracion de Software, UNTELS). Nombres de companeros pendientes de confirmar con Frank.
+Proyecto realizado en equipo (Grupo 03, curso Gestión de Configuración de Software, UNTELS). Nombres de compañeros pendientes de confirmar con Frank.

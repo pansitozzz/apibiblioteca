@@ -56,6 +56,6 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     private Categoria buscarOFallar(Long id) {
         return categoriaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Categoria no encontrada con id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con id: " + id));
     }
 }

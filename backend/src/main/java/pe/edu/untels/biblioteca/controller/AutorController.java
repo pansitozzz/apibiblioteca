@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/autores")
 @RequiredArgsConstructor
-@Tag(name = "Autores", description = "Gestion de autores del catalogo")
+@Tag(name = "Autores", description = "Gestión de autores del catálogo")
 public class AutorController {
 
     private final AutorService autorService;

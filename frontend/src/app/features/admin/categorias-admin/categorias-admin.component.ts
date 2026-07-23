@@ -72,23 +72,23 @@ export class CategoriasAdminComponent implements OnInit {
 
     operacion.subscribe({
       next: () => {
-        this.snackBar.open('Categoria guardada correctamente', 'Cerrar', { duration: 3000 });
+        this.snackBar.open('Categoría guardada correctamente', 'Cerrar', { duration: 3000 });
         this.mostrarFormulario.set(false);
         this.cargar();
       },
-      error: (err) => this.snackBar.open(err?.error?.message ?? 'No se pudo guardar la categoria', 'Cerrar', { duration: 4000 })
+      error: (err) => this.snackBar.open(err?.error?.message ?? 'No se pudo guardar la categoría', 'Cerrar', { duration: 4000 })
     });
   }
 
   eliminar(categoria: Categoria): void {
-    if (!confirm(`Eliminar la categoria "${categoria.nombre}"?`)) return;
+    if (!confirm(`Eliminar la categoría "${categoria.nombre}"?`)) return;
 
     this.categoriaService.eliminar(categoria.id).subscribe({
       next: () => {
-        this.snackBar.open('Categoria eliminada', 'Cerrar', { duration: 3000 });
+        this.snackBar.open('Categoría eliminada', 'Cerrar', { duration: 3000 });
         this.cargar();
       },
-      error: (err) => this.snackBar.open(err?.error?.message ?? 'No se pudo eliminar la categoria', 'Cerrar', { duration: 4000 })
+      error: (err) => this.snackBar.open(err?.error?.message ?? 'No se pudo eliminar la categoría', 'Cerrar', { duration: 4000 })
     });
   }
 }

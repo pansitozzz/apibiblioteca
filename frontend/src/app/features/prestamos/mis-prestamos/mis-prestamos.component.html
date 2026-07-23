@@ -1,5 +1,5 @@
 <div class="page-container">
-  <h1>Mis prestamos</h1>
+  <h1>Mis préstamos</h1>
 
   <table mat-table [dataSource]="prestamos()" class="full-width">
     <ng-container matColumnDef="titulo">
@@ -8,12 +8,12 @@
     </ng-container>
 
     <ng-container matColumnDef="fechaPrestamo">
-      <th mat-header-cell *matHeaderCellDef>Fecha de prestamo</th>
+      <th mat-header-cell *matHeaderCellDef>Fecha de préstamo</th>
       <td mat-cell *matCellDef="let p">{{ p.fechaPrestamo }}</td>
     </ng-container>
 
     <ng-container matColumnDef="fechaDevolucionEsperada">
-      <th mat-header-cell *matHeaderCellDef>Devolucion esperada</th>
+      <th mat-header-cell *matHeaderCellDef>Devolución esperada</th>
       <td mat-cell *matCellDef="let p">{{ p.fechaDevolucionEsperada }}</td>
     </ng-container>
 
@@ -35,7 +35,7 @@
   </table>
 
   @if (prestamos().length === 0) {
-    <p class="vacio">Aun no tienes prestamos registrados.</p>
+    <p class="vacio">Aún no tienes préstamos registrados.</p>
   }
 
   <mat-paginator

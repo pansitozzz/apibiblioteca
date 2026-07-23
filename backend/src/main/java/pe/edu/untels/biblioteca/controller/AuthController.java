@@ -14,7 +14,7 @@ import pe.edu.untels.biblioteca.service.AuthService;
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@Tag(name = "Autenticacion", description = "Registro e inicio de sesion")
+@Tag(name = "Autenticación", description = "Registro e inicio de sesión")
 public class AuthController {
 
     private final AuthService authService;

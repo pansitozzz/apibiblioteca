@@ -29,12 +29,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<ApiError> handleAuthentication(AuthenticationException ex, HttpServletRequest req) {
-        return build(HttpStatus.UNAUTHORIZED, "Credenciales invalidas", req);
+        return build(HttpStatus.UNAUTHORIZED, "Credenciales inválidas", req);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ApiError> handleAccessDenied(AccessDeniedException ex, HttpServletRequest req) {
-        return build(HttpStatus.FORBIDDEN, "No tiene permisos para realizar esta accion", req);
+        return build(HttpStatus.FORBIDDEN, "No tiene permisos para realizar esta acción", req);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -45,7 +45,7 @@ public class GlobalExceptionHandler {
         ApiError error = new ApiError(
                 HttpStatus.BAD_REQUEST.value(),
                 HttpStatus.BAD_REQUEST.getReasonPhrase(),
-                "Error de validacion en los datos enviados",
+                "Error de validación en los datos enviados",
                 req.getRequestURI(),
                 detalles
         );
@@ -55,7 +55,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGeneric(Exception ex, HttpServletRequest req) {
         log.error("Error no controlado", ex);
-        return build(HttpStatus.INTERNAL_SERVER_ERROR, "Ocurrio un error interno en el servidor", req);
+        return build(HttpStatus.INTERNAL_SERVER_ERROR, "Ocurrió un error interno en el servidor", req);
     }
 
     private ResponseEntity<ApiError> build(HttpStatus status, String message, HttpServletRequest req) {
