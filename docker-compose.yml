@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: biblioteca-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-biblioteca_db}
+      POSTGRES_USER: ${DB_USERNAME:-biblioteca_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?La variable DB_PASSWORD es obligatoria}
+    ports:
+      - "5432:5432"
+    volumes:
+      - biblioteca_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-biblioteca_user} -d ${DB_NAME:-biblioteca_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: biblioteca-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_HOST: db
+      DB_NAME: ${DB_NAME:-biblioteca_db}
+      DB_USERNAME: ${DB_USERNAME:-biblioteca_user}
+      DB_PASSWORD: ${DB_PASSWORD:?La variable DB_PASSWORD es obligatoria}
+      JWT_SECRET: ${JWT_SECRET:?La variable JWT_SECRET es obligatoria}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+      PRESTAMO_DIAS_PLAZO: ${PRESTAMO_DIAS_PLAZO:-14}
+      MULTA_MONTO_POR_DIA: ${MULTA_MONTO_POR_DIA:-2.00}
+    ports:
+      - "8080:8080"
+
+volumes:
+  biblioteca_db_data:
