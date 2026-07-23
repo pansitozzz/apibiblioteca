@@ -1,0 +1,37 @@
+<div class="page-container">
+  <a routerLink="/catalogo">&larr; Volver al catalogo</a>
+
+  @if (libro(); as l) {
+    <mat-card class="detalle">
+      <mat-card-header>
+        <mat-card-title>{{ l.titulo }}</mat-card-title>
+        <mat-card-subtitle>{{ l.autor.nombre }} {{ l.autor.apellido }} &middot; {{ l.editorial }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-chip-set>
+          <mat-chip>{{ l.categoria.nombre }}</mat-chip>
+          <mat-chip>ISBN: {{ l.isbn }}</mat-chip>
+          @if (l.anioPublicacion) {
+            <mat-chip>Anio: {{ l.anioPublicacion }}</mat-chip>
+          }
+          @if (l.stock > 0) {
+            <mat-chip color="primary">Stock disponible: {{ l.stock }}</mat-chip>
+          } @else {
+            <mat-chip color="warn">Sin stock disponible</mat-chip>
+          }
+        </mat-chip-set>
+
+        <p class="biografia">{{ l.autor.biografia }}</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        @if (l.stock > 0) {
+          <button mat-raised-button color="primary" (click)="solicitarPrestamo()">Solicitar prestamo</button>
+        } @else {
+          <button mat-raised-button (click)="reservar()">Reservar</button>
+        }
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>

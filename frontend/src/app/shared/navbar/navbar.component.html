@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+  <span routerLink="/catalogo" class="brand">Biblioteca UNTELS</span>
+  <span class="spacer"></span>
+
+  @if (authService.estaAutenticado()) {
+    <button mat-button routerLink="/catalogo">Catalogo</button>
+    <button mat-button routerLink="/mis-prestamos">Mis prestamos</button>
+
+    @if (esBibliotecarioOAdmin()) {
+      <button mat-button [matMenuTriggerFor]="menuGestion">Gestion</button>
+      <mat-menu #menuGestion="matMenu">
+        <button mat-menu-item routerLink="/admin/libros">Libros</button>
+        <button mat-menu-item routerLink="/admin/autores">Autores</button>
+        <button mat-menu-item routerLink="/admin/categorias">Categorias</button>
+        <button mat-menu-item routerLink="/admin/prestamos">Prestamos y devoluciones</button>
+      </mat-menu>
+    }
+
+    <button mat-icon-button [matMenuTriggerFor]="menuUsuario">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menuUsuario="matMenu">
+      <div class="usuario-info" mat-menu-item disabled>
+        {{ authService.usuario()?.nombre }} {{ authService.usuario()?.apellido }} ({{ authService.rol() }})
+      </div>
+      <button mat-menu-item (click)="cerrarSesion()">
+        <mat-icon>logout</mat-icon>
+        Cerrar sesion
+      </button>
+    </mat-menu>
+  } @else {
+    <button mat-button routerLink="/login">Iniciar sesion</button>
+    <button mat-raised-button color="accent" routerLink="/register">Registrarse</button>
+  }
+</mat-toolbar>

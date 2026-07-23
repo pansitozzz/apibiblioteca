@@ -1,0 +1,60 @@
+<div class="page-container">
+  <h1>Catalogo de libros</h1>
+
+  <div class="filtros">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar por titulo</mat-label>
+      <input matInput [(ngModel)]="titulo" (keyup.enter)="buscar()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar por autor</mat-label>
+      <input matInput [(ngModel)]="autor" (keyup.enter)="buscar()">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="buscar()">
+      <mat-icon>search</mat-icon>
+      Buscar
+    </button>
+  </div>
+
+  <div class="grilla">
+    @for (libro of libros(); track libro.id) {
+      <mat-card class="tarjeta-libro" (click)="verDetalle(libro)">
+        <mat-card-header>
+          <mat-card-title>{{ libro.titulo }}</mat-card-title>
+          <mat-card-subtitle>{{ libro.autor.nombre }} {{ libro.autor.apellido }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-chip-set>
+            <mat-chip>{{ libro.categoria.nombre }}</mat-chip>
+            @if (libro.stock > 0) {
+              <mat-chip color="primary">Stock: {{ libro.stock }}</mat-chip>
+            } @else {
+              <mat-chip color="warn">Sin stock</mat-chip>
+            }
+          </mat-chip-set>
+        </mat-card-content>
+        <mat-card-actions>
+          @if (libro.stock > 0) {
+            <button mat-button color="primary" (click)="solicitarPrestamo(libro, $event)">Solicitar prestamo</button>
+          } @else {
+            <button mat-button (click)="reservar(libro, $event)">Reservar</button>
+          }
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+
+  @if (!cargando() && libros().length === 0) {
+    <p class="vacio">No se encontraron libros con los filtros indicados.</p>
+  }
+
+  <mat-paginator
+    [length]="totalElementos()"
+    [pageSize]="tamanio"
+    [pageIndex]="pagina"
+    [pageSizeOptions]="[4, 8, 12, 20]"
+    (page)="cambiarPagina($event)">
+  </mat-paginator>
+</div>
