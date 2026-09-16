@@ -1,12 +1,24 @@
 # Biblioteca UNTELS
 
-API REST para gestión de biblioteca universitaria con préstamos, reservas y control de multas, con frontend en Angular.
+API REST para gestión de biblioteca universitaria con préstamos, reservas y control de multas, acompañada de un frontend en Angular.
 
-## Problema y contexto
+## Contexto
 
-Este proyecto nace como trabajo del curso **Gestión de Configuración de Software** de la Universidad Nacional Tecnológica de Lima Sur (UNTELS). Se desarrolló en equipo (**Grupo 03**) siguiendo la metodología **Scrum** a lo largo de **4 sprints**, con gestión de tareas en **Jira** y control de versiones bajo el flujo **GitFlow** (ramas `develop`, `feature/*`, `release/*`).
+Proyecto académico del curso **Gestión de Configuración de Software** de la Universidad Nacional Tecnológica de Lima Sur (UNTELS). Fue desarrollado en equipo bajo metodología **Scrum** durante **4 sprints**, usando **Jira** para la gestión de tareas y **GitFlow** para el control de versiones.
 
-El objetivo funcional es digitalizar los procesos de una biblioteca universitaria: catálogo de libros, préstamos y devoluciones, reservas cuando no hay stock disponible, y el cálculo automático de multas por atraso.
+El sistema busca digitalizar procesos habituales de una biblioteca universitaria: consulta del catálogo, préstamos y devoluciones, reservas cuando no existe disponibilidad inmediata y cálculo automático de multas por atraso.
+
+## Funcionalidades principales
+
+- Autenticación y autorización mediante JWT.
+- Gestión de libros y disponibilidad de ejemplares.
+- Registro de préstamos y devoluciones.
+- Reservas cuando no existe stock disponible.
+- Cálculo de multas por atraso.
+- Separación de permisos por rol.
+- Documentación interactiva de la API con Swagger/OpenAPI.
+- Migraciones de base de datos versionadas con Flyway.
+- Pruebas unitarias y de integración en el backend.
 
 ## Stack tecnológico
 
@@ -14,84 +26,63 @@ El objetivo funcional es digitalizar los procesos de una biblioteca universitari
 
 - Java 17
 - Spring Boot 3.3
-- Spring Security + JWT (jjwt)
+- Spring Security + JWT
 - Spring Data JPA / Hibernate
 - PostgreSQL 16
-- Flyway (migraciones versionadas)
-- MapStruct (mapeo entidad-DTO)
-- springdoc-openapi (Swagger UI)
+- Flyway
+- MapStruct
+- springdoc-openapi / Swagger UI
 - Lombok
-- JUnit 5 + Mockito + MockMvc + H2 (tests)
+- JUnit 5, Mockito, MockMvc y H2
 - Maven
 
 ### Frontend
 
-- Angular 22 (standalone components, sin NgModules)
-- TypeScript en modo estricto
+- Angular 22
+- TypeScript
 - Angular Material
 - Reactive Forms
 - RxJS
 
+### Herramientas y proceso
+
+- Git / GitFlow
+- Jira
+- Scrum
+- Docker / Docker Compose
+
 ## Arquitectura
 
-El backend sigue una arquitectura en capas clásica:
+El backend utiliza una arquitectura en capas:
 
-```
-controller -> service (interfaz + implementacion) -> repository (Spring Data JPA)
-                    |
-                 mapper (entidad <-> DTO)
-```
-
-- `dto/request` y `dto/response` están separados: los DTOs de entrada nunca se reutilizan como salida.
-- `exception` centraliza las excepciones de negocio (`ResourceNotFoundException`, `BusinessRuleException`) y un `@RestControllerAdvice` que devuelve errores en un formato JSON consistente.
-- `security` contiene el filtro JWT, el servicio de tokens y las reglas de autorización por rol.
-- Las migraciones de base de datos viven en `db/migration` y se aplican con Flyway; no se usa `ddl-auto: update` en ningún perfil.
-
-El frontend organiza el código por dominio:
-
-```
-core/        -> servicios HTTP, interceptores, guards y modelos compartidos
-features/    -> páginas por funcionalidad (auth, catalogo, prestamos, admin)
-shared/      -> componentes reutilizables (navbar, páginas de error)
+```text
+controller -> service -> repository
+                |
+              mapper
 ```
 
-Un interceptor adjunta el JWT a cada petición y otro intercepta los errores 401/403 para cerrar sesión o redirigir según corresponda. Las rutas de administración están protegidas con `authGuard` y `roleGuard`.
+Los DTO de entrada y salida están separados, las excepciones de negocio se centralizan con `@RestControllerAdvice`, y la seguridad se organiza mediante filtro JWT y reglas de autorización por rol.
 
-## Cómo correrlo localmente
+El frontend se organiza por dominio:
 
-### Backend
+```text
+core/       -> servicios HTTP, interceptores, guards y modelos compartidos
+features/   -> funcionalidades de autenticación, catálogo, préstamos y administración
+shared/     -> componentes reutilizables
+```
 
-1. Copiar `backend/.env.example` a `backend/.env` y completar los valores (usuario, password de PostgreSQL y un `JWT_SECRET` propio).
-2. Levantar backend + PostgreSQL con Docker:
+## Ejecución local
 
-   ```bash
-   docker compose up --build
-   ```
+### Backend con Docker
 
-   Esto construye la imagen del backend, levanta PostgreSQL y aplica las migraciones de Flyway automáticamente al iniciar.
+1. Copiar `backend/.env.example` como `backend/.env` y completar las variables requeridas.
+2. Ejecutar:
 
-3. Alternativa sin Docker (requiere PostgreSQL corriendo localmente):
+```bash
+docker compose up --build
+```
 
-   ```bash
-   cd backend
-   export DB_URL=jdbc:postgresql://localhost:5432/biblioteca_db
-   export DB_USERNAME=biblioteca_user
-   export DB_PASSWORD=tu_password
-   export JWT_SECRET=una_clave_larga_y_aleatoria
-   ./mvnw spring-boot:run
-   ```
-
-   Flyway aplica las migraciones (`V1__init.sql`, `V2__seed_data.sql`) contra la base indicada la primera vez que arranca la aplicación.
-
-4. Documentación interactiva de la API (Swagger UI): `http://localhost:8080/swagger-ui.html`
-
-Usuarios de ejemplo cargados por el seed (todos ficticios):
-
-| Rol | Email | Password |
-|---|---|---|
-| ADMIN | admin@biblioteca.demo | Password123 |
-| BIBLIOTECARIO | bibliotecario@biblioteca.demo | Password123 |
-| ESTUDIANTE | estudiante@biblioteca.demo | Password123 |
+El backend queda disponible en `http://localhost:8080` y Swagger UI en `http://localhost:8080/swagger-ui.html`.
 
 ### Frontend
 
@@ -101,17 +92,21 @@ npm install
 ng serve
 ```
 
-La app queda disponible en `http://localhost:4200`. Por defecto apunta a `http://localhost:8080/api/v1` (ver `src/environments/environment.development.ts`); si el backend corre en otra URL, ajustar ese archivo.
+La aplicación queda disponible en `http://localhost:4200`.
 
-## Tests del backend
+## Pruebas
 
 ```bash
 cd backend
 ./mvnw test
 ```
 
-Incluye tests unitarios de la lógica de negocio de préstamos (validación de stock, préstamo duplicado, cálculo de multas por atraso) con JUnit 5 + Mockito, y tests de integración con MockMvc + H2 sobre los controllers de autenticación, libros y préstamos.
+Incluye pruebas unitarias sobre reglas de negocio de préstamos y pruebas de integración de controladores de autenticación, libros y préstamos.
 
-## Créditos
+## Datos de demostración
 
-Proyecto académico desarrollado en equipo (Grupo 03) para el curso Gestión de Configuración de Software, UNTELS.
+El proyecto incluye usuarios ficticios de ejemplo para facilitar pruebas locales. No se utilizan datos reales de personas ni de organizaciones.
+
+## Autoría
+
+Proyecto académico desarrollado en equipo para el curso **Gestión de Configuración de Software — UNTELS**.
