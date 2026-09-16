@@ -112,10 +112,6 @@ cd backend
 
 Incluye tests unitarios de la lógica de negocio de préstamos (validación de stock, préstamo duplicado, cálculo de multas por atraso) con JUnit 5 + Mockito, y tests de integración con MockMvc + H2 sobre los controllers de autenticación, libros y préstamos.
 
-## Capturas de pantalla
-
-_Pendiente: agregar capturas del catálogo, el flujo de préstamo y el panel de gestión._
-
 ## Créditos
 
-Proyecto realizado en equipo (Grupo 03, curso Gestión de Configuración de Software, UNTELS). Nombres de compañeros pendientes de confirmar con Frank.
+Proyecto académico desarrollado en equipo (Grupo 03) para el curso Gestión de Configuración de Software, UNTELS.
